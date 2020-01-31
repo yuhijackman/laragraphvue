@@ -1,0 +1,39 @@
+version: '3'
+services:
+    backend: &app
+        build:
+            context: ./.docker/backend
+        volumes:
+            - ./backend/:/app:cached
+        ports:
+            - "9001:8000"
+        depends_on:
+            - db
+        command: ['php', 'artisan', 'serve', '--host', '0.0.0.0']
+    db: &db
+        build:
+            context: ./.docker/db
+        ports:
+             - "4008:3306"
+        volumes:
+            - ./:/app:cached
+            - db_data:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: laravue
+            MYSQL_USER: laravue
+            MYSQL_PASSWORD: laravue
+    frontend:
+        build:
+            context: ./.docker/frontend
+        volumes:
+            - ./frontend/:/app:cached
+        environment:
+            - HOST=0.0.0.0
+        ports:
+            - "4001:8080"
+        command: ['yarn', 'run', 'dev']
+
+volumes:
+    db_data:
+        driver: local
