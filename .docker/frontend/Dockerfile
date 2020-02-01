@@ -1,7 +1,7 @@
-FROM node:11.15
-RUN mkdir -p /app
-WORKDIR /app
-RUN npm install -g yarn
+FROM node:13.7
+RUN mkdir -p /nuxt
+WORKDIR /nuxt
+RUN npm install yarn
 RUN yarn global add vue-cli
 #CMD npm install && npm run dev
-EXPOSE 8080
+EXPOSE 3000
