@@ -1,0 +1,15 @@
+type Ferret {
+  id: ID!
+  name: String!
+}
+
+type Food {
+  id: ID!
+  name: String!
+}
+
+type Query {
+  ferret(id: ID! @eq): Ferret @find
+  ferrets: [Ferret!]! @all
+  foods: [Food!]! @all
+}

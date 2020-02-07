@@ -56,14 +56,7 @@ RUN apt-get update\
     && apt-get upgrade -y\
     && apt-get clean -y\
     && rm -rf /var/cache/apt/archives/* /var/lib/apt/lists/*
-
-# IPAフォントのダウンロード
-RUN cd /usr/local/src\
-   && wget https://ipafont.ipa.go.jp/IPAfont/IPAfont00303.zip\
-   && unzip IPAfont00303.zip\
-   && mv IPAfont00303/*.ttf /usr/local/share/fonts/.\
-   && fc-cache -fv\
-   && rm -rf /usr/local/src/IPAfont00303*
+RUN docker-php-ext-install pdo_mysql
 
 RUN locale-gen ja_JP.utf8
 ENV LANG ja_JP.utf8
