@@ -6,24 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class FoodRecord extends Model
+class Medication extends Model
 {
     protected $attributes = [
-        'amount' => 0,
-        'feeding_time' => '0000-00-00 00:00'
+        'name' => '',
+        'date' => '0000-00-00'
     ];
 
-    protected $casts = [
-        'amount' => 'integer',
-    ];
-
-    /**
+     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'amount', 'food_id', 'ferret_id','feeding_time'
+        'name', 'date', 'ferret_id'
     ];
 
     protected $dates = [

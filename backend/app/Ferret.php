@@ -8,6 +8,23 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Ferret extends Model
 {
+    protected $attributes = [
+        'name' => '',
+        'birthdate' => '0000-00-00',
+        'thumbnail' => '',
+        'weight' => 0,
+        'height' => 0,
+        'type' => 0
+    ];
+
+    public static $enums = [
+        'type' => [
+            0 => 'UNKNOWN',
+            1 => 'HOLDEN',
+            2 => 'MARSHAL'
+        ]
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -15,13 +32,6 @@ class Ferret extends Model
      */
     protected $fillable = [
         'name', 'birthdate', 'password','thumbnail','weight','type'
-    ];
-
-    public static $enums = [
-        'type' => [
-            1 => 'HOLDEN',
-            2 => 'MARSHAL'
-        ]
     ];
 
     protected $dates = [
@@ -40,8 +50,32 @@ class Ferret extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
     */
+    public function events(): HasMany
+    {
+        return $this->hasMany(Event::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    */
     public function foods(): HasMany
     {
         return $this->hasMany(Food::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    */
+    public function poops(): HasMany
+    {
+        return $this->hasMany(Poop::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    */
+    public function medication(): HasMany
+    {
+        return $this->hasMany(Medication::class);
     }
 }

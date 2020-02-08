@@ -16,11 +16,11 @@ class CreateFerretsTable extends Migration
         Schema::create('ferrets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->dateTime('birthdate');
+            $table->date('birthdate');
             $table->string('thumbnail')->nullable();
-            $table->float('weight')->nullable();
-            $table->float('height')->nullable();
-            $table->integer('type')->nullable();
+            $table->decimal('weight', 4, 1)->nullable();
+            $table->integer('height')->unsigned()->nullable();
+            $table->tinyInteger('type')->unsigned()->nullable();
             $table->string('password');
             $table->timestamps();
             $table->softDeletes();

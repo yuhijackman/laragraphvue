@@ -6,15 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class FoodRecord extends Model
+class Event extends Model
 {
     protected $attributes = [
-        'amount' => 0,
-        'feeding_time' => '0000-00-00 00:00'
-    ];
-
-    protected $casts = [
-        'amount' => 'integer',
+      'title' => '',
+      'start_date' => '0000-00-00 00:00',
+      'end_date' => '0000-00-00 00:00',
+      'location' => ''
     ];
 
     /**
@@ -23,15 +21,15 @@ class FoodRecord extends Model
      * @var array
      */
     protected $fillable = [
-        'amount', 'food_id', 'ferret_id','feeding_time'
+      'title', 'start_date', 'end_date','location'
     ];
 
     protected $dates = [
-        'created_at',
-        'updated_at'
+      'created_at',
+      'updated_at'
     ];
 
-    /**
+     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function ferret(): BelongsTo

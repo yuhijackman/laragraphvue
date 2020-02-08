@@ -7,13 +7,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Food extends Model
 {
+    protected $attributes = [
+        'name' => '',
+        'amount' => 0
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name'
+        'name', 'amount'
     ];
 
     protected $dates = [

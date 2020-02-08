@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFoodRecordsTable extends Migration
+class CreateEventsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateFoodRecordsTable extends Migration
      */
     public function up()
     {
-        Schema::create('food_records', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('amount')->unsigned()->nullable(false);
-            $table->integer('food_id')->unsigned()->nullable(false);
+            $table->string('title')->nullable(false);
+            $table->dateTime('start_date')->nullable(false);
+            $table->dateTime('end_date')->nullable(false);
+            $table->string('location')->nullable();
             $table->bigInteger('ferret_id')->unsigned()->nullable(false);
-            $table->dateTime('feeding_time')->nullable(false);
             $table->foreign('ferret_id')->references('id')->on('ferrets')->onDelete('cascade');
             $table->timestamps();
         });
@@ -31,6 +32,6 @@ class CreateFoodRecordsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('food_records');
+        Schema::dropIfExists('events');
     }
 }

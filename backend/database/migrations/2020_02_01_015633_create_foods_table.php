@@ -15,11 +15,11 @@ class CreateFoodsTable extends Migration
     {
         Schema::create('foods', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->integer('ferret_id')->unsigned()->nullable(false);
-            $table->float('amount');
-            $table->timestamps();
+            $table->string('name')->nullable(false);
+            $table->bigInteger('ferret_id')->unsigned()->nullable(false);
+            $table->integer('amount')->nullable(false);
             $table->foreign('ferret_id')->references('id')->on('ferrets')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
