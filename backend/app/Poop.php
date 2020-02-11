@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Poop extends Model
 {
     protected $attributes = [
-        'type' => 0,
+        'consistency' => 0,
+        'color' => 0,
         'date' => '0000-00-00'
     ];
 

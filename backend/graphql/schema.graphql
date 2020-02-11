@@ -1,15 +1,15 @@
-type Ferret {
-  id: ID!
-  name: String!
-}
+# "A datetime string with format `Y-m-d H:i:s`, e.g. `2018-01-01 13:00:00`."
+scalar DateTime @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
 
-type Food {
-  id: ID!
-  name: String!
-}
+# "A date string with format `Y-m-d`, e.g. `2011-05-23`."
+scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 
-type Query {
-  ferret(id: ID! @eq): Ferret @find
-  ferrets: [Ferret!]! @all
-  foods: [Food!]! @all
-}
+type Query
+type Mutation
+
+#import ./event.graphql
+#import ./ferret.graphql
+#import ./food_record.graphql
+#import ./food.graphql
+#import ./medication.graphql
+#import ./poop.graphql

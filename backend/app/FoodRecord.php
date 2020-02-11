@@ -38,4 +38,12 @@ class FoodRecord extends Model
     {
         return $this->belongsTo(Ferret::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    */
+    public function food(): BelongsTo
+    {
+        return $this->belongsTo(Food::class);
+    }
 }

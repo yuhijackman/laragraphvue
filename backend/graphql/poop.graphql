@@ -1,0 +1,25 @@
+type Poop {
+    consistency: String!
+    ferret: Ferret! @belongsTo
+    date: Date!
+    consistency: PoopConsistency!
+    color: PoopColor!
+}
+
+enum PoopConsistency {
+    NONE @enum(value: 0)
+    SEEDY @enum(value: 1)
+    GELATINOUS @enum(value: 2)
+    WATERY @enum(value: 3)
+    SOFT @enum(value: 4)
+    TUBULAR @enum(value: 5)
+}
+
+enum PoopColor {
+    NONE @enum(value: 0)
+    BROWN @enum(value: 1)
+    GREEN @enum(value: 2)
+    YELLOW @enum(value: 3)
+    TARRY @enum(value: 4)
+    BLOODY @enum(value: 5)
+}

@@ -1,0 +1,7 @@
+type Event {
+    title: String!
+    startDate: DateTime! @rename(attribute: "start_date")
+    endDate: DateTime! @rename(attribute: "end_date")
+    location: String
+    ferret: Ferret! @belongsTo
+}

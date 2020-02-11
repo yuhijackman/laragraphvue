@@ -1,0 +1,11 @@
+extend type Query {
+    foods: [Food!]! @all
+    food(id: ID @eq): Food @find
+}
+
+type Food {
+    id: ID!
+    name: String!
+    ferret: Ferret! @belongsTo
+    amount: Int!
+}

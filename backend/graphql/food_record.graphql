@@ -1,0 +1,6 @@
+type FoodRecord {
+    amount: Int!
+    food: [Food!]! @hasMany
+    ferret: Ferret! @belongsTo
+    feedingTime: DateTime! @rename(attribute: "feeding_time")
+}

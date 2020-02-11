@@ -1,0 +1,5 @@
+type Medication {
+    name: String!
+    ferret: Ferret! @belongsTo
+    date: Date!
+}
