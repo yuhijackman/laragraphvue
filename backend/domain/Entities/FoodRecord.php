@@ -1,25 +1,29 @@
 <?php
 
-namespace App;
+namespace Domain\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Medication extends Model
+class FoodRecord extends Model
 {
     protected $attributes = [
-        'name' => '',
-        'date' => '0000-00-00'
+        'amount' => 0,
+        'feeding_time' => '0000-00-00 00:00'
     ];
 
-     /**
+    protected $casts = [
+        'amount' => 'integer',
+    ];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'date', 'ferret_id'
+        'amount', 'food_id', 'ferret_id','feeding_time'
     ];
 
     protected $dates = [
@@ -33,5 +37,13 @@ class Medication extends Model
     public function ferret(): BelongsTo
     {
         return $this->belongsTo(Ferret::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    */
+    public function food(): BelongsTo
+    {
+        return $this->belongsTo(Food::class);
     }
 }

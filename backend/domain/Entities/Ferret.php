@@ -1,13 +1,19 @@
 <?php
 
-namespace App;
+namespace Domain\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+use Carbon\Carbon;
+use Log;
 
 class Ferret extends Model
 {
+    use SoftDeletes;
+
     protected $attributes = [
         'name' => '',
         'birthdate' => '0000-00-00',
@@ -36,7 +42,8 @@ class Ferret extends Model
 
     protected $dates = [
         'created_at',
-        'updated_at'
+        'updated_at',
+        'birthdate'
     ];
 
     /**
@@ -74,7 +81,7 @@ class Ferret extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
     */
-    public function medication(): HasMany
+    public function medications(): HasMany
     {
         return $this->hasMany(Medication::class);
     }

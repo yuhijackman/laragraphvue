@@ -1,0 +1,52 @@
+extend type Query {
+    ferrets: [Ferret!]! @all
+    ferret(id: ID @eq): Ferret @find
+}
+
+extend type Mutation {
+    createFerret(input: CreateFerretInput!): Ferret! @field(resolver: "FerretGQL@createFerretResolver")
+    updateFerret(id: ID!, input: UpdateFerretInput!): Ferret! @field(resolver: "FerretGQL@updateFerretResolver")
+    deleteFerret(id: ID!): Ferret! @field(resolver: "FerretGQL@deleteFerretResolver")
+}
+
+type Ferret {
+    id: ID!
+    name: String!
+    birthdate: Date!
+    thumbnail: String
+    weight: Float
+    height: Int
+    type: FerretType
+    # Relations
+    events: [Event] @hasMany
+    medications: [Medication] @hasMany
+    poops: [Poop] @hasMany
+    foods: [Food] @hasMany
+    foodRecords: [FoodRecord] @hasMany
+}
+
+input CreateFerretInput {
+    name: String!
+    birthdate: Date!
+    thumbnail: String
+    weight: Float
+    height: Int
+    type: FerretType
+    password: String!
+}
+
+input UpdateFerretInput {
+    name: String
+    birthdate: Date
+    thumbnail: String
+    weight: Float
+    height: Int
+    type: FerretType
+    password: String
+}
+
+enum FerretType {
+    UNKNOWN @enum(value: 0)
+    HOLDEN @enum(value: 1)
+    MARSHAL @enum(value: 2)
+}

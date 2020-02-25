@@ -1,0 +1,40 @@
+extend type Query {
+    events: [Event]! @all
+    event(id: ID @eq): Event @find
+}
+
+extend type Mutation {
+    createEvent(
+      ferret_id: ID!
+      input: CreateEventInput!
+    ): Event! @field(resolver: "EventGQL@createEventResolver")
+    updateEvent(
+      id: ID!
+      input: UpdateEventInput!
+    ): Event! @field(resolver: "EventGQL@updateEventResolver")
+}
+
+type Event {
+  id: ID!
+  title: String!
+  start_date: DateTime!
+  end_date: DateTime!
+  location: String
+  # Relations
+  ferret: Ferret! @belongsTo
+}
+
+input CreateEventInput {
+  title: String!
+  start_date: DateTime!
+  end_date: DateTime!
+  location: String
+}
+
+input UpdateEventInput {
+  title: String
+  start_date: DateTime
+  end_date: DateTime
+  location: String
+
+}
