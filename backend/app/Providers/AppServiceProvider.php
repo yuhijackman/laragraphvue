@@ -13,7 +13,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(\Domain\Repositories\FerretRepositoryInterface::class,
+            \Infrastructure\Repositories\FerretRepository::class);
+        $this->app->bind(\Domain\Repositories\EventRepositoryInterface::class,
+            \Infrastructure\Repositories\EventRepository::class);
     }
 
     /**

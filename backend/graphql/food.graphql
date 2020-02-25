@@ -6,6 +6,7 @@ extend type Query {
 type Food {
     id: ID!
     name: String!
-    ferret: Ferret! @belongsTo
     amount: Int!
+    # Relations
+    ferret: Ferret! @belongsTo
 }

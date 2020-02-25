@@ -1,5 +1,7 @@
 type Medication {
-    name: String!
-    ferret: Ferret! @belongsTo
+    id: ID!
     date: Date!
+    name: String!
+    # Relations
+    ferret: Ferret! @belongsTo
 }

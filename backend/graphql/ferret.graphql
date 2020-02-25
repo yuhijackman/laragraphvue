@@ -4,9 +4,9 @@ extend type Query {
 }
 
 extend type Mutation {
-    createFerret(input: CreateFerretInput!): Ferret! @field(resolver: "CreateFerretResolver@resolve")
-    updateFerret(id: ID!, input: UpdateFerretInput!): Ferret! @field(resolver: "UpdateFerretResolver@resolve")
-    deleteFerret(id: ID!): Ferret! @delete
+    createFerret(input: CreateFerretInput!): Ferret! @field(resolver: "FerretGQL@createFerretResolver")
+    updateFerret(id: ID!, input: UpdateFerretInput!): Ferret! @field(resolver: "FerretGQL@updateFerretResolver")
+    deleteFerret(id: ID!): Ferret! @field(resolver: "FerretGQL@deleteFerretResolver")
 }
 
 type Ferret {

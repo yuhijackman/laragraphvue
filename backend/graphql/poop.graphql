@@ -1,9 +1,10 @@
 type Poop {
-    consistency: String!
-    ferret: Ferret! @belongsTo
-    date: Date!
-    consistency: PoopConsistency!
+    id: ID!
     color: PoopColor!
+    consistency: PoopConsistency!
+    date: Date!
+    # Relations
+    ferret: Ferret! @belongsTo
 }
 
 enum PoopConsistency {

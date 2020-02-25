@@ -1,34 +1,20 @@
 <?php
 
-namespace App;
+namespace Domain\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Poop extends Model
+class FoodRecord extends Model
 {
     protected $attributes = [
-        'consistency' => 0,
-        'color' => 0,
-        'date' => '0000-00-00'
+        'amount' => 0,
+        'feeding_time' => '0000-00-00 00:00'
     ];
 
-    public static $enums = [
-        'consistency' => [
-            1 => 'SEEDY',
-            2 => 'GELATINOUS',
-            3 => 'WATERY',
-            4 => 'SOFT',
-            5 => 'TUBULAR'
-        ],
-        'color' => [
-            1 => 'BROWN',
-            2 => 'GREEN',
-            3 => 'YELLOW',
-            4 => 'TARRY',
-            5 => 'BLOODY'
-        ]
+    protected $casts = [
+        'amount' => 'integer',
     ];
 
     /**
@@ -37,18 +23,27 @@ class Poop extends Model
      * @var array
      */
     protected $fillable = [
-        'color', 'consistency', 'date'
+        'amount', 'food_id', 'ferret_id','feeding_time'
     ];
 
     protected $dates = [
         'created_at',
         'updated_at'
     ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function ferret(): BelongsTo
     {
         return $this->belongsTo(Ferret::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    */
+    public function food(): BelongsTo
+    {
+        return $this->belongsTo(Food::class);
     }
 }

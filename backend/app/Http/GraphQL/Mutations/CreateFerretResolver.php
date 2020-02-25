@@ -1,15 +1,15 @@
 <?php
 
-namespace App\GraphQL\Mutations;
+namespace App\Http\GraphQL\Mutations;
 
-use App\Ferret;
+use App\Models\Ferret;
 
 use GraphQL\Type\Definition\ResolveInfo;
 use Nuwave\Lighthouse\Support\Contracts\GraphQLContext;
 
 use Log;
 
-class UpdateFerretResolver
+class CreateFerretResolver
 {
     /**
      * Return a value for the field.
@@ -20,12 +20,18 @@ class UpdateFerretResolver
      * @param  \GraphQL\Type\Definition\ResolveInfo  $resolveInfo Information about the query itself, such as the execution state, the field name, path to the field from the root, and more.
      * @return mixed
      */
-    public function resolve($rootValue, array $args, GraphQLContext $context, ResolveInfo $resolveInfo)
+
+    public function resolve($rootValue, array $args, GraphQLContext $context = null, ResolveInfo $resolveInfo)
     {
         $input = $args['input'];
-        $ferret = Ferret::findOrFail($args['id']);
-        $ferret->fill($input)
-            ->save();
+        $ferret = new Ferret;
+        $ferret->name = $input['name'];
+        $ferret->weight = $input['weight'];
+        $ferret->height = $input['height'];
+        $ferret->type = $input['type'];
+        $ferret->birthdate = $input['birthdate'];
+        $ferret->password = $input['password'];
+        $ferret->save();
         return $ferret;
-    }
+     }
 }

@@ -7,8 +7,8 @@ scalar Date @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\Date")
 type Query
 type Mutation
 
-#import ./event.graphql
 #import ./ferret.graphql
+#import ./event.graphql
 #import ./food_record.graphql
 #import ./food.graphql
 #import ./medication.graphql
